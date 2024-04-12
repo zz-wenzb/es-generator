@@ -1,0 +1,71 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.wenzb</groupId>
+  <artifactId>es-generator</artifactId>
+  <version>1.0</version>
+  <packaging>jar</packaging>
+
+  <name>es-generator</name>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.elasticsearch.client</groupId>
+      <artifactId>elasticsearch-rest-high-level-client</artifactId>
+      <version>7.4.0</version>
+    </dependency>
+    
+    <!--使用 enjoy 模板引擎-->
+    <dependency>
+      <groupId>com.jfinal</groupId>
+      <artifactId>enjoy</artifactId>
+      <version>5.1.3</version>
+    </dependency>
+    
+    
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.30</version>
+    </dependency>
+    
+    
+  </dependencies>
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <!-- **/* 打包代码生成器的模板文件 -->
+          <include>**/*.tpl</include>
+        </includes>
+        <filtering>false</filtering>
+      </resource>
+      
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/*</include>
+        </includes>
+        <excludes>
+          <exclude>
+            *.properties
+          </exclude>
+        </excludes>
+      </resource>
+    </resources>
+  </build>
+</project>
